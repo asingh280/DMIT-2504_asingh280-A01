@@ -26,7 +26,7 @@ Commit your work and upload to a remote github repo of your choice, and then sub
  
 - Do `NOT` use the `stack` or `positioned` widgets.
 
-- All containers will have a height and width of 100px.
+- All containers will have a height and width of 100px
 
 - All font sizes will be default except `Con 6` which will be font size 30.
 
