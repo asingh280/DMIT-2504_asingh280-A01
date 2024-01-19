@@ -38,9 +38,10 @@ class MyApp extends StatelessWidget {
               children: <Widget>[
                 // Container 1
                 Container(
-                  height: 100.0,
+                  height: 100,
                   width: 100.0,
                   padding: const EdgeInsets.all(10.0),
+                  
                   decoration: BoxDecoration(
                     color: Colors.amber,
                     border: Border.all(color: Colors.black, width: 3.0),
@@ -53,13 +54,15 @@ class MyApp extends StatelessWidget {
                 // Container 2 (Rotated)
                 Transform.rotate(
                   angle: pi / 4,
+
+                  origin: const Offset(20,-8),
                   child: Container(
                     height: 100.0,
                     width: 100.0,
                     padding: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
-                      border: Border.all(color: Colors.black, width: 3.0),
+                    
                     ),
                     child: const Center(
                       child: Text('Container 2'),
@@ -74,7 +77,7 @@ class MyApp extends StatelessWidget {
               children: <Widget>[
                 // Container 3
                 Container(
-                  height: 100.0,
+                  height: 300.0,
                   width: 100.0,
                   color: Colors.yellow,
                   child: const Center(
