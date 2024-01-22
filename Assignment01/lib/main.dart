@@ -28,20 +28,18 @@ class MyApp extends StatelessWidget {
           title: const Text("App1 - UI Layout"),
           backgroundColor: Colors.blue,
         ),
-        body: /*const*/ Row(
+        body: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            // Column for Container 1 and Container 2
             Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 // Container 1
                 Container(
                   height: 100,
                   width: 100.0,
                   padding: const EdgeInsets.all(10.0),
-                  
                   decoration: BoxDecoration(
                     color: Colors.amber,
                     border: Border.all(color: Colors.black, width: 3.0),
@@ -50,19 +48,17 @@ class MyApp extends StatelessWidget {
                     child: Text('Container 1'),
                   ),
                 ),
-                const SizedBox(height: 20), // Space between containers
-                // Container 2 (Rotated)
+                const SizedBox(height: 20),
+                // Container 2
                 Transform.rotate(
                   angle: pi / 4,
-
-                  origin: const Offset(20,-8),
+                  origin: const Offset(20, -8),
                   child: Container(
                     height: 100.0,
                     width: 100.0,
                     padding: const EdgeInsets.all(10.0),
                     decoration: const BoxDecoration(
                       color: Colors.white,
-                    
                     ),
                     child: const Center(
                       child: Text('Container 2'),
@@ -71,38 +67,35 @@ class MyApp extends StatelessWidget {
                 ),
               ],
             ),
-
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 // Container 3
                 Container(
-                  height: 300.0,
+                  height: 385.0,
                   width: 100.0,
                   color: Colors.yellow,
-                  child: const Center(
+                  child: const Align(
+                    alignment: Alignment.bottomCenter,
                     child: Text('Container 3'),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                //Container 4
+                Container(
+                  height: 385.0,
+                  width: 100.0,
+                  color: Colors.lightBlue,
+                  child: const Align(
+                    alignment: Alignment.centerRight,
+                    child: Text('Container 4'),
                   ),
                 ),
               ],
             ),
-
             Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                // Container 4
-                Container(
-                  height: 100.0,
-                  width: 100.0,
-                  decoration: BoxDecoration(
-                    color: Colors.lightBlue,
-                    border: Border.all(color: Colors.black, width: 3.0),
-                  ),
-                  child: const Center(
-                    child: Text('Container 4'),
-                  ),
-                ),
-                const SizedBox(height: 20), // Space between containers
                 // Container 5 (Circle)
                 Container(
                   height: 100.0,
@@ -113,20 +106,21 @@ class MyApp extends StatelessWidget {
                     border: Border.all(color: Colors.white, width: 3.0),
                   ),
                   child: const Center(
-                    child: Text('Container 5'),
+                    child: Text(
+                      'Container 5',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
-                const SizedBox(height: 20), // Space between containers
-                // Container 6 with larger font size
+                const SizedBox(height: 150),
+                // Container 6
                 Container(
-                  height: 100.0,
+                  height: 300.0,
                   width: 100.0,
-                  padding: const EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    border: Border.all(color: Colors.black, width: 3.0),
-                  ),
-                  child: const Center(
+                  // padding: const EdgeInsets.all(0),
+                  color: Colors.red,
+                  child: const Align(
+                    alignment: Alignment.topLeft,
                     child: Text(
                       'Con 6',
                       style: TextStyle(fontSize: 30),
