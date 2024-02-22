@@ -170,7 +170,7 @@ class MyFirstPageState extends State<MyFirstPage> {
                         formKey.currentState?.save();
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text('Hey There, Your name is: $firstName'),
+                            content: Text('Hey There, Your name is $firstName'),
                             duration: Duration(seconds: 5),
                             action: SnackBarAction(
                               label: 'Click Me',
@@ -180,6 +180,7 @@ class MyFirstPageState extends State<MyFirstPage> {
                             ),
                           ),
                         );
+                        textEditingController.clear();
                       }
                     },
                     style: ElevatedButton.styleFrom(
