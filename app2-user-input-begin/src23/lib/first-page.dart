@@ -144,6 +144,7 @@ class MyFirstPageState extends State<MyFirstPage> {
                     decoration: InputDecoration(
                        icon: Icon(Icons.hourglass_top),
                       labelText: 'Enter Name',
+                       helperText: 'min 1, max 10',
                       hintText: 'Enter your name',
                          suffixIcon: Icon(
                     Icons.check_circle,
