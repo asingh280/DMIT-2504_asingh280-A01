@@ -142,8 +142,12 @@ class MyFirstPageState extends State<MyFirstPage> {
                    TextFormField(
                     controller: textEditingController,
                     decoration: InputDecoration(
+                       icon: Icon(Icons.hourglass_top),
                       labelText: 'Enter Name',
                       hintText: 'Enter your name',
+                         suffixIcon: Icon(
+                    Icons.check_circle,
+                  ),
 
                       border: OutlineInputBorder(), // Border when not focused
               focusedBorder: OutlineInputBorder( // Border when focused
