@@ -113,6 +113,7 @@ class MyFirstPageState extends State<MyFirstPage> {
                   style: ElevatedButton.styleFrom(
 
                     shape: RoundedRectangleBorder(
+                      
                       borderRadius: BorderRadius.circular(
                           10.0), // Set rounded corners here
                     ),
@@ -145,7 +146,7 @@ class MyFirstPageState extends State<MyFirstPage> {
                        icon: Icon(Icons.hourglass_top),
                       labelText: 'Enter Name',
                        helperText: 'min 1, max 10',
-                      hintText: 'Enter your name',
+                      hintText: 'first name',
                          suffixIcon: Icon(
                     Icons.check_circle,
                   ),
