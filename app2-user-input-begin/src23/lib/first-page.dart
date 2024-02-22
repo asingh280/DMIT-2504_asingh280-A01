@@ -19,6 +19,7 @@ class MyFirstPage extends StatefulWidget {
 
 class MyFirstPageState extends State<MyFirstPage> {
   bool enabled = false;
+  int previousCount = 0;
   int timesClicked = 0;
   String msg1 = '';
   String msg2 = '';
@@ -38,32 +39,39 @@ class MyFirstPageState extends State<MyFirstPage> {
               // and build the label and switch here
               // as children of the row.
               Text('Enable buttons'),
-                         Switch(
+              Switch(
                 value: enabled,
                 onChanged: (bool onChangedValue) {
                   print('onChangedValue is $onChangedValue');
                   enabled = onChangedValue;
                   setState(() {
                     if (enabled) {
-                      timesClicked = 0;
-                      msg1 = 'Click Me';
+                      if (previousCount > 0) {
+                        // Restore the count value when the switch is turned back on
+                        timesClicked = previousCount;
+                      } else {
+                        timesClicked = 0;
+                      }
+                      msg1 = 'Clicked $timesClicked';
                       print('enabled is true');
                     } else {
+                      // Store the count value before the switch is turned off
+                      previousCount = timesClicked;
                       msg1 = 'Disabled';
                       print('enabled is false');
                     }
                   });
-                }),
+                },
+              ),
             ],
           ),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              //TODO: Build the two buttons here 
+              //TODO: Build the two buttons here
               // as children of the row.
-              // For each button use a 
-              // "Visibility Widget" and its child 
+              // For each button use a
+              // "Visibility Widget" and its child
               // will be an "ElevatedButton"
               Visibility(
                 visible: enabled,
@@ -77,27 +85,34 @@ class MyFirstPageState extends State<MyFirstPage> {
                   },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0), 
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
                   child: Text(msg1),
                 ),
               ),
-              const SizedBox(width: 10), 
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    timesClicked = 0;
-                    msg1 = 'Click Me';
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0), // Set rounded corners here
-                  ),
-                ),
-                child: Text('Reset'),
+              Visibility(
+                visible: enabled,
+                child: const SizedBox(width: 10),
               ),
+              Visibility(
+                visible: enabled,
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      timesClicked = 0;
+                      msg1 = 'Click Me';
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          10.0), // Set rounded corners here
+                    ),
+                  ),
+                  child: Text('Reset'),
+                ),
+              )
             ],
           ),
           const SizedBox(
@@ -117,7 +132,50 @@ class MyFirstPageState extends State<MyFirstPage> {
                   // a submit button that will show a
                   // snackbar with the "firstName"
                   // if validation is satisfied.
-                  
+                   TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Enter Name',
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a name';
+                      } else if (value.length < 1 || value.length > 10) {
+                        return 'Name must be between 1 and 10 characters';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      firstName = value;
+                    },
+                  ),
+
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (formKey.currentState?.validate() ?? false) {
+                        // Form is valid, show the Snackbar
+                        formKey.currentState?.save();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Hey There, Your name is: $firstName'),
+                            duration: Duration(seconds: 5),
+                            action: SnackBarAction(
+                              label: 'Click Me',
+                              onPressed: () {
+                                print('Print button in Snackbar clicked');
+                              },
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                  )
+                    ),
+                    child: Text('Submit')
+                  )
                 ],
               ),
             ),
