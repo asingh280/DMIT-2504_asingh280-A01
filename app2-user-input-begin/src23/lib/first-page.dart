@@ -37,9 +37,26 @@ class MyFirstPageState extends State<MyFirstPage> {
               //TODO: Replace this Text Widget
               // and build the label and switch here
               // as children of the row.
-              Text('testing 1 2 3 '),
+              Text('Enable buttons'),
+                         Switch(
+                value: enabled,
+                onChanged: (bool onChangedValue) {
+                  print('onChangedValue is $onChangedValue');
+                  enabled = onChangedValue;
+                  setState(() {
+                    if (enabled) {
+                      timesClicked = 0;
+                      msg1 = 'Click Me';
+                      print('enabled is true');
+                    } else {
+                      msg1 = 'Disabled';
+                      print('enabled is false');
+                    }
+                  });
+                }),
             ],
           ),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -48,7 +65,39 @@ class MyFirstPageState extends State<MyFirstPage> {
               // For each button use a 
               // "Visibility Widget" and its child 
               // will be an "ElevatedButton"
-              
+              Visibility(
+                visible: enabled,
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      timesClicked++;
+                      msg1 = 'Clicked $timesClicked';
+                      print('clicked $timesClicked');
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0), 
+                    ),
+                  ),
+                  child: Text(msg1),
+                ),
+              ),
+              const SizedBox(width: 10), 
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    timesClicked = 0;
+                    msg1 = 'Click Me';
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0), // Set rounded corners here
+                  ),
+                ),
+                child: Text('Reset'),
+              ),
             ],
           ),
           const SizedBox(
