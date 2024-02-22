@@ -38,7 +38,13 @@ class MyFirstPageState extends State<MyFirstPage> {
               //TODO: Replace this Text Widget
               // and build the label and switch here
               // as children of the row.
-              Text('Enable buttons'),
+                          Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Enable Buttons',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
               Switch(
                 value: enabled,
                 onChanged: (bool onChangedValue) {
@@ -105,6 +111,7 @@ class MyFirstPageState extends State<MyFirstPage> {
                     });
                   },
                   style: ElevatedButton.styleFrom(
+
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
                           10.0), // Set rounded corners here
@@ -133,8 +140,14 @@ class MyFirstPageState extends State<MyFirstPage> {
                   // snackbar with the "firstName"
                   // if validation is satisfied.
                    TextFormField(
+                    controller: textEditingController,
                     decoration: InputDecoration(
                       labelText: 'Enter Name',
+                      hintText: 'Enter your name',
+
+                      border: OutlineInputBorder(), // Border when not focused
+              focusedBorder: OutlineInputBorder( // Border when focused
+              ),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
